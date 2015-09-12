@@ -4,31 +4,30 @@
 \alias{supure}
 \title{Makes unmixing of set of spectra to pure components.}
 \usage{
-supure(spectra, ncomp, suggest = NULL, savgol.deriv = 2,
-  savgol.width = NULL, savgol.porder = 2, do.norm = TRUE,
-  wavelength = NULL)
+supure(spectra, ncomp, offset = 5, use.deriv = 0, savgol = c(2, 5, 2),
+  exclude = NULL, wavelength = NULL)
 }
 \arguments{
 \item{ncomp}{number of pure components to identify (optional)}
 
-\item{suggest}{a sequence with variable numbers suggested as pure variables for each component}
+\item{use.deriv}{shall a second derivative be used (0 - no, 1 - only for unmixing, 2 - both for locating pure
+variables and for unmixing)}
 
-\item{savgol.deriv}{a derivative order (if 0 no derivative will be used)}
+\item{savgol}{parameters for Savitzky-Goley filter: derivative order, width of filter and polynomial order}
 
-\item{savgol.width}{a width of filter used to smooth signal prior to take a derivative}
-
-\item{savgol.porder}{a polynomial order used for smoothing}
-
-\item{do.norm}{logical, normalize the spectral data to unit area prior to unmixing or not}
+\item{exclude}{vector of column numbers that should be excluded when pure variables are being detected}
 
 \item{wavelength}{a vector with wavelength if necessary}
 
 \item{data}{a matrix with spectral values}
 }
 \value{
-A \code{supure} object - list with several fields, including:
- \item{spec}{resolved spectra of pure components.}
- \item{conc}{resolved concentrations of pure components.}
+The method returns an object of \code{supure} class with following fields.
+\code{supure } object - list with several fields, including:
+\item{spec }{resolved spectra of pure components.}
+\item{conc }{resolved concentrations of pure components.}
+\item{purvars }{vector with indices for pure variables.}
+\item{purity }{vector with values for purity function.}
 }
 \description{
 Makes unmixing of set of spectra to pure components.

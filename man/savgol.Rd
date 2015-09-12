@@ -4,7 +4,7 @@
 \alias{savgol}
 \title{Savytzky-Golay filter}
 \usage{
-savgol(data, width = 3, porder = 1, dorder = 0)
+savgol(data, params)
 }
 \arguments{
 \item{data}{a matrix with data values}
