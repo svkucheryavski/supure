@@ -1,8 +1,12 @@
 Sprectra Unmixing with Pure Variables
 ===========================================
 
-supure is an R package implementing a method for spectral unmixing (curve resolution) based on
-the pure variables approach.
+supure is an R package implementing methods for spectral unmixing (curve resolution) based on
+the pure variables approach. It includes SIMPLSIMA and a simple implementation of MCR-ALS with 
+angle conctraint. The package supplements a chapter in a book RESOLVING SPECTRAL MIXTURES, DATA 
+HANDLING IN SCIENCE AND TECHNOLOGY, edited by Cyril Ruckebusch which will be published by Elsevier
+in 2016. See `?supure` for all details.
+
 How to install
 --------------
 To get the latest release plase use GitHub sources. You can [download](https://github.com/svkucheryavski/supure/releases) a zip-file with source package and 

@@ -1,8 +1,9 @@
 Package: supure
 Title: Spectral Unmixing with Pure Variables
 Version: 0.0.1
-Date: 2015-08-29
+Date: 2015-09-22
 Author: Sergey Kucheryavskiy 
 Maintainer:  Sergey Kucheryavskiy <svkucheryavski@gmail.com>
 Description: Package implements an algorithm for resolutution of spectral curves (unmixing) based on pure variables approach.
-License: GPL-3
+License: MIT + file LICENSE
+Suggests: shiny
