@@ -11,11 +11,19 @@ plotVariance(obj, type = "b", col = getColors(1), pch = 16,
 \arguments{
 \item{obj}{object with unmixing results}
 
+\item{type}{type of the plot}
+
+\item{col}{color for line and markers}
+
+\item{pch}{marker symbol}
+
 \item{xlab}{label for x axis}
 
 \item{ylab}{label for y axis}
 
 \item{main}{main title for the plot}
+
+\item{...}{other parameters for plot function}
 }
 \description{
 Residual variance plot for results of unmixing

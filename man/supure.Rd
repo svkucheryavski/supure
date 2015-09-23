@@ -35,7 +35,7 @@ Each dataset is a list with following fields:
 \tabular{ll}{
   \code{D} \tab data matrix with spectra of mixtures.\cr
   \code{S} \tab optional, matrix with spectra of pure components.\cr
-  \code{С} \tab optional, matrix with concentrations of pure components.\cr
+  \code{C} \tab optional, matrix with concentrations of pure components.\cr
   \code{wavelength} \tab wavelength or wavenumbers.\cr
 }
 
@@ -46,9 +46,9 @@ Sergey Kucheryavskiy (svkucheryavski@gmail.com)
 }
 
 \references{
-1. W. Windig, J. Guilment, Anal. Chem. 63 (1991) 1425–1432.
+1. W. Windig, J. Guilment, Anal. Chem. 63 (1991) 1425-1432.
 
-2. W. Windig, Chemom. Intell. Lab. Syst. 23 (1994) 71–86. 
+2. W. Windig, Chemom. Intell. Lab. Syst. 23 (1994) 71-86. 
 
-3. W. Windig, M.R. Keenan, Appl. Spectrosc. 65 (2011) 349–357.
+3. W. Windig, M.R. Keenan, Appl. Spectrosc. 65 (2011) 349-357.
 }

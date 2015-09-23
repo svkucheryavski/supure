@@ -4,15 +4,23 @@
 \alias{image.purity}
 \title{Image with concentration map}
 \usage{
-\method{image}{purity}(obj, ncomp, main = NULL, col = getColors(256),
-  xaxt = "n", yaxt = "n")
+\method{image}{purity}(x, ncomp, main = NULL, col = getColors(256),
+  xaxt = "n", yaxt = "n", ...)
 }
 \arguments{
-\item{obj}{object with purity results}
+\item{x}{object with purity results}
 
 \item{ncomp}{which component make the map for}
 
 \item{main}{main title for the plot}
+
+\item{col}{a color map for the image}
+
+\item{xaxt}{x-axis type}
+
+\item{yaxt}{y-axis type}
+
+\item{...}{other image parameters}
 }
 \description{
 Make an image with map of resolved concentrations

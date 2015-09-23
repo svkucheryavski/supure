@@ -1,3 +1,5 @@
+#' A GUI tool for exploring purity results
+#' 
 #' @export
 explore = function() {
   appDir = system.file("shiny", "explorer", package = "supure")

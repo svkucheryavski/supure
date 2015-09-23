@@ -1,9 +1,13 @@
 #' Angle constrained MCR-ALS.
 #'
-#' @param data
+#' @param D
 #' a matrix with spectral values
 #' @param  ncomp
 #' number of pure components to identify
+#' @param Ct
+#' initial estimates for pure contributions
+#' @param St
+#' initial estimates for pure spectra
 #' @param do.angle
 #' logical, should the angle constraint be used
 #' @param f
@@ -25,6 +29,9 @@
 #' spectra and contributions by setting all negative values to zero. In addition an angle constraint
 #' can be applied by adding a small portion (default 5%) of mean to spectra or contributions [1].
 #' 
+#' If initial estimates for contributions and spectra are not provided the estimates will 
+#' be generated with random numbers.
+#' 
 #' @seealso 
 #' The class has numerous methods for investigating and refininf the unmixing results.
 #' \tabular{ll}{
@@ -39,7 +46,7 @@
 #' }
 #' 
 #' @references 
-#' 1. W. Windig, M.R. Keenan, Appl. Spectrosc. 65 (2011) 349–357.
+#' 1. W. Windig, M.R. Keenan, Appl. Spectrosc. 65 (2011) 349-357.
 #' 
 #' @examples
 #' 
@@ -47,8 +54,8 @@
 #' # results for first two components
 #' data(puredata)
 #'
-#' res1 = mcrals(hsi$D, 3, do.angle = F, wavelength = hsi$wavelength)
-#' res2 = mcrals(hsi$D, 3, do.angle = T, wavelength = hsi$wavelength)
+#' res1 = mcrals(hsi$D, 3, do.angle = FALSE, wavelength = hsi$wavelength)
+#' res2 = mcrals(hsi$D, 3, do.angle = TRUE, wavelength = hsi$wavelength)
 #' 
 #' summary(res1)
 #' summary(res2)
@@ -166,16 +173,18 @@ mcrals = function(D, ncomp, Ct = NULL, St = NULL, do.angle = T, f = 0.05, wavele
 #' 
 #' @description 
 #' Make an image with map of resolved concentrations 
-#' @param obj
+#' @param x
 #' object with mcrals results
+#' @param ...
+#' other parameters
 #' 
 #' @details 
 #' The method is similar to \code{\link{image.purity}}.
 #' 
 #' @export
-image.mcrals = function(obj, ...)
+image.mcrals = function(x, ...)
 {
-  image.purity(obj, ...)
+  image.purity(x, ...)
 }  
 
 

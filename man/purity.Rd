@@ -8,6 +8,8 @@ purity(spectra, ncomp, offset = 5, by.spec = T, use.deriv = 0,
   savgol = c(2, 5, 2), exclude = NULL, wavelength = NULL)
 }
 \arguments{
+\item{spectra}{a matrix with spectral data}
+
 \item{ncomp}{number of pure components to identify}
 
 \item{offset}{offset in percent for calculation of parameter alpha}
@@ -22,8 +24,6 @@ variables and for unmixing)}
 \item{exclude}{vector of column numbers that should be excluded when pure variables are being detected}
 
 \item{wavelength}{a vector with wavelength if necessary}
-
-\item{data}{a matrix with spectral data}
 }
 \value{
 The method returns an object of \code{purity} class - a list with with following fields:
@@ -69,8 +69,8 @@ plotSpectraComparison(res, carbs$S, 3)
 par(mfrow = c(1, 1))
 
 # do unmixing with two different settings and compare purity for first component
-res1 = purity(carbs$D, 3, offset = 5, use.deriv = F)
-res2 = purity(carbs$D, 3, offset = 15, use.deriv = T, savgol = c(2, 5, 2))
+res1 = purity(carbs$D, 3, offset = 5, use.deriv = FALSE)
+res2 = purity(carbs$D, 3, offset = 15, use.deriv = TRUE, savgol = c(2, 5, 2))
 par(mfrow = c(2, 1))
 plotPurity(res1, 1)
 plotPurity(res2, 1)
@@ -97,8 +97,8 @@ image(res, 2)
 image(res, 3)
 }
 \references{
-1. W. Windig, J. Guilment, Anal. Chem. 63 (1991) 1425–1432.
-2. W. Windig, Chemom. Intell. Lab. Syst. 23 (1994) 71–86.
+1. W. Windig, J. Guilment, Anal. Chem. 63 (1991) 1425-1432.
+2. W. Windig, Chemom. Intell. Lab. Syst. 23 (1994) 71-86.
 }
 \seealso{
 The class has numerous methods for exploring and refining the unmixing results.

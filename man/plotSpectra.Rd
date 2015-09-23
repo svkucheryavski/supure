@@ -18,6 +18,14 @@ plotSpectra(obj, comp = 1:obj$ncomp, origspec = NULL, show.labels = T,
 
 \item{show.labels}{logical, show or not labels for the selected pure variables on the plot}
 
+\item{show.legend}{logical, show or not a legend for the plot}
+
+\item{legend.str}{a vector with legend items}
+
+\item{ylim}{limits for y-axis}
+
+\item{xlim}{limits for x-axis}
+
 \item{col}{color for the component spectra}
 
 \item{lty}{line type for the component spectra}
@@ -29,6 +37,8 @@ plotSpectra(obj, comp = 1:obj$ncomp, origspec = NULL, show.labels = T,
 \item{ylab}{label for y axis}
 
 \item{main}{main title for the plot}
+
+\item{...}{other maplot parameters}
 }
 \description{
 Shows a plot with resolved spectra

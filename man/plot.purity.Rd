@@ -9,6 +9,8 @@
 \arguments{
 \item{x}{a  (object of class \code{purity})}
 
+\item{comp}{for which component(s) make the plot for}
+
 \item{...}{other arguments}
 }
 \description{

@@ -7,7 +7,7 @@
 plotPurity(obj, ncomp = 1, origspec = NULL, col = c("#62B7EF", "#D84E5E",
   "#F0F0F0"), lty = 1, lwd = 1, xlab = "Wavenumbers",
   ylab = c("Weighted std", "Purity"), main = sprintf("Purity for C\%d",
-  ncomp), ...)
+  ncomp))
 }
 \arguments{
 \item{obj}{object with unmixing results}

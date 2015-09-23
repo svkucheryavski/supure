@@ -67,7 +67,7 @@ areanorm = function(spectra)
 plotPurity = function(obj, ncomp = 1, origspec = NULL,
                       col = c('#62B7EF', '#D84E5E', '#F0F0F0'), lty = 1, lwd = 1, 
                       xlab = 'Wavenumbers', ylab = c('Weighted std', 'Purity'),  
-                      main = sprintf('Purity for C%d', ncomp), ...)
+                      main = sprintf('Purity for C%d', ncomp))
 {
   if (class(obj) != 'purity')
     stop('This plot can be maid only for "purity" objects!')
@@ -148,6 +148,14 @@ plotPurity = function(obj, ncomp = 1, origspec = NULL,
 #' original spectral data used for unmixing
 #' @param show.labels
 #' logical, show or not labels for the selected pure variables on the plot
+#' @param show.legend
+#' logical, show or not a legend for the plot
+#' @param legend.str
+#' a vector with legend items
+#' @param xlim
+#' limits for x-axis
+#' @param ylim
+#' limits for y-axis
 #' @param col
 #' color for the component spectra
 #' @param lty
@@ -160,6 +168,8 @@ plotPurity = function(obj, ncomp = 1, origspec = NULL,
 #' label for y axis
 #' @param main
 #' main title for the plot
+#' @param ...
+#' other maplot parameters
 #' 
 #' @export
 plotSpectra = function(obj, comp = 1:obj$ncomp, origspec = NULL, show.labels = T,
@@ -253,6 +263,8 @@ plotSpectra = function(obj, comp = 1:obj$ncomp, origspec = NULL, show.labels = T
 #' label for y axis
 #' @param main
 #' main title for the plot
+#' @param ...
+#' other parameters for matplot function
 #' 
 #' @export
 plotConcentrations = function(obj, comp = 1:obj$ncomp, origspec = NULL, 
@@ -306,13 +318,21 @@ plotConcentrations = function(obj, comp = 1:obj$ncomp, origspec = NULL,
 #' 
 #' @param obj
 #' object with unmixing results
+#' @param type
+#' type of the plot
+#' @param col
+#' color for line and markers
+#' @param pch
+#' marker symbol
 #' @param xlab
 #' label for x axis
 #' @param ylab
 #' label for y axis
 #' @param main
 #' main title for the plot
-#' 
+#' @param ...
+#' other parameters for plot function
+#'  
 #' @export
 plotVariance = function(obj, type = 'b', col = getColors(1), pch = 16, 
                         xlab = 'Number of components', ylab = 'Variance, %', 
@@ -325,13 +345,39 @@ plotVariance = function(obj, type = 'b', col = getColors(1), pch = 16,
 
 #' Compares resolved and original pure component spectra
 #'
+#' @description 
+#' shows two spectra - a resolved and an original for selected pure component in the same plot
+#' 
+#' @param obj
+#' object with unmixing results
+#' @param purespec
+#' matrix with pure spectra for the components (spectra in rows)
+#' @param ncomp
+#' for which component show the comparison for
+#' @param col
+#' color for the spectra (two values - one for each spectrum)
+#' @param lwd
+#' line width for the spectra (two values)
+#' @param lty
+#' line type for the spectra (two values)
+#' @param xlab
+#' label for x axis
+#' @param ylab
+#' label for y axis
+#' @param main
+#' main title for the plot
+#' @param show.stat
+#' logical, show or not relative residual variance between the spectra
+#' @param ...
+#' other plot parameters
+
 #' @export
-plotSpectraComparison = function(obj, ospectra, ncomp = 1, col = getColors(2), lwd = c(2, 1), 
+plotSpectraComparison = function(obj, purespec, ncomp = 1, col = getColors(2), lwd = c(2, 1), 
                                  lty = c(1, 1), xlab = 'Wavenumbers', ylab = 'Intensity', 
                                  main = NULL, show.stat = F, ...)
 {
   rspectrum = t(obj$spec[, ncomp, drop = F])
-  ospectrum = t(ospectra[, ncomp, drop = F])
+  ospectrum = t(purespec[, ncomp, drop = F])
   
   ospectrum = areanorm(ospectrum)
   rspectrum = areanorm(rspectrum)

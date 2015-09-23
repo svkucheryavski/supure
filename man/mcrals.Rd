@@ -8,7 +8,13 @@ mcrals(D, ncomp, Ct = NULL, St = NULL, do.angle = T, f = 0.05,
   wavelength = NULL, max.niter = 500)
 }
 \arguments{
+\item{D}{a matrix with spectral values}
+
 \item{ncomp}{number of pure components to identify}
+
+\item{Ct}{initial estimates for pure contributions}
+
+\item{St}{initial estimates for pure spectra}
 
 \item{do.angle}{logical, should the angle constraint be used}
 
@@ -17,8 +23,6 @@ mcrals(D, ncomp, Ct = NULL, St = NULL, do.angle = T, f = 0.05,
 \item{wavelength}{a vector with wavelength if necessary}
 
 \item{max.niter}{maximum number of iterations}
-
-\item{data}{a matrix with spectral values}
 }
 \value{
 The method returns results of unmixing as an object of \code{mcrals} class with following fields.
@@ -34,14 +38,17 @@ Angle constrained MCR-ALS.
 The method implements a simple MCR-ALS algorithm with non-negativity constraints applied both to
 spectra and contributions by setting all negative values to zero. In addition an angle constraint
 can be applied by adding a small portion (default 5%) of mean to spectra or contributions [1].
+
+If initial estimates for contributions and spectra are not provided the estimates will
+be generated with random numbers.
 }
 \examples{
 # unmix hyperspectral data with and without angle constraint and compare the
 # results for first two components
 data(puredata)
 
-res1 = mcrals(hsi$D, 3, do.angle = F, wavelength = hsi$wavelength)
-res2 = mcrals(hsi$D, 3, do.angle = T, wavelength = hsi$wavelength)
+res1 = mcrals(hsi$D, 3, do.angle = FALSE, wavelength = hsi$wavelength)
+res2 = mcrals(hsi$D, 3, do.angle = TRUE, wavelength = hsi$wavelength)
 
 summary(res1)
 summary(res2)
@@ -62,7 +69,7 @@ for (i in 1:3)
 par(mfrow = c(1, 1))
 }
 \references{
-1. W. Windig, M.R. Keenan, Appl. Spectrosc. 65 (2011) 349–357.
+1. W. Windig, M.R. Keenan, Appl. Spectrosc. 65 (2011) 349-357.
 }
 \seealso{
 The class has numerous methods for investigating and refininf the unmixing results.

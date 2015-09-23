@@ -9,11 +9,7 @@ savgol(data, params)
 \arguments{
 \item{data}{a matrix with data values}
 
-\item{width}{width of the filter window}
-
-\item{porder}{order of polynomial used for smoothing}
-
-\item{dorder}{order of derivative to take (0 - no derivative)}
+\item{params}{vector with parameters: derivative order, width of filter and polynomial order}
 }
 \description{
 Applies Savytzky-Golay filter to the rows of data matrix

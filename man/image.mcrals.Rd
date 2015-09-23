@@ -4,10 +4,12 @@
 \alias{image.mcrals}
 \title{Image with concentration map}
 \usage{
-\method{image}{mcrals}(obj, ...)
+\method{image}{mcrals}(x, ...)
 }
 \arguments{
-\item{obj}{object with mcrals results}
+\item{x}{object with mcrals results}
+
+\item{...}{other parameters}
 }
 \description{
 Make an image with map of resolved concentrations

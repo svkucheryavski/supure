@@ -4,7 +4,7 @@
 #' \code{purity} is a class for resolving pure spectra and contributions from spectra of mixtures
 #' using pure variable approach.
 #' 
-#' @param data
+#' @param spectra
 #' a matrix with spectral data
 #' @param  ncomp
 #' number of pure components to identify
@@ -61,8 +61,8 @@
 #' \code{\link{getpurevars}} and \code{\link{unmix}}. 
 #' 
 #' @references 
-#' 1. W. Windig, J. Guilment, Anal. Chem. 63 (1991) 1425–1432.
-#' 2. W. Windig, Chemom. Intell. Lab. Syst. 23 (1994) 71–86. 
+#' 1. W. Windig, J. Guilment, Anal. Chem. 63 (1991) 1425-1432.
+#' 2. W. Windig, Chemom. Intell. Lab. Syst. 23 (1994) 71-86. 
 #'  
 #' @examples  
 #'
@@ -84,8 +84,8 @@
 #' par(mfrow = c(1, 1))
 #' 
 #' # do unmixing with two different settings and compare purity for first component
-#' res1 = purity(carbs$D, 3, offset = 5, use.deriv = F)
-#' res2 = purity(carbs$D, 3, offset = 15, use.deriv = T, savgol = c(2, 5, 2))
+#' res1 = purity(carbs$D, 3, offset = 5, use.deriv = FALSE)
+#' res2 = purity(carbs$D, 3, offset = 15, use.deriv = TRUE, savgol = c(2, 5, 2))
 #' par(mfrow = c(2, 1))
 #' plotPurity(res1, 1)
 #' plotPurity(res2, 1)
@@ -137,7 +137,7 @@ purity = function(spectra, ncomp, offset = 5, by.spec = T, use.deriv = 0, savgol
   }  
   
   # get pure variables and unmix data
-  res1 = getpurevars(D, offset, ncomp, exclude)
+  res1 = getpurevars(D, ncomp, offset = offset, exclude = exclude)
   res2 = unmix(spectra, D[, res1$purevars, drop = F], by.spec = by.spec)
 
   # combine all values to the final list
@@ -320,12 +320,8 @@ unmix = function(D, Dr, by.spec = T)
 #' 
 #' @param data
 #' a matrix with data values
-#' @param width
-#' width of the filter window
-#' @param porder
-#' order of polynomial used for smoothing
-#' @param dorder
-#' order of derivative to take (0 - no derivative)
+#' @param  params
+#' vector with parameters: derivative order, width of filter and polynomial order
 #' 
 #' @export
 savgol = function(data, params)
@@ -371,12 +367,20 @@ pinv = function(data)
 #' 
 #' @description 
 #' Make an image with map of resolved concentrations 
-#' @param obj
+#' @param x
 #' object with purity results
 #' @param ncomp
 #' which component make the map for
 #' @param main
 #' main title for the plot
+#' @param col
+#' a color map for the image
+#' @param xaxt
+#' x-axis type
+#' @param yaxt
+#' y-axis type
+#' @param ...
+#' other image parameters
 #' 
 #' @details 
 #' The method will work only if original spectral data
@@ -384,23 +388,23 @@ pinv = function(data)
 #' that it is a hypercube
 #' 
 #' @export
-image.purity = function(obj, ncomp, main = NULL, col = getColors(256), xaxt = 'n', yaxt = 'n')
+image.purity = function(x, ncomp, main = NULL, col = getColors(256), xaxt = 'n', yaxt = 'n', ...)
 {
-  if (ncomp < 1 || ncomp > obj$ncomp)
+  if (ncomp < 1 || ncomp > x$ncomp)
     stop('Wrong value for argument "ncomp"!')
  
-  img = obj$conc[, ncomp, drop = F]
-  width = attr(obj$conc, 'width')
-  height = attr(obj$conc, 'height')
+  img = x$conc[, ncomp, drop = F]
+  width = attr(x$conc, 'width')
+  height = attr(x$conc, 'height')
   
   if (is.null(main))
-    main = sprintf('Concentration map for %s', colnames(obj$conc)[ncomp])
+    main = sprintf('Concentration map for %s', colnames(x$conc)[ncomp])
   
   if (is.null(width) || is.null(height))
     stop('The provided spectral data was not a hyperspectral image!')
   
   dim(img) = c(height, width)  
-  image(img, col = col, main = main, xaxt = xaxt, yaxt = yaxt)
+  image(img, col = col, main = main, xaxt = xaxt, yaxt = yaxt, ...)
 }  
 
 
@@ -411,6 +415,8 @@ image.purity = function(obj, ncomp, main = NULL, col = getColors(256), xaxt = 'n
 #' 
 #' @param x
 #' a  (object of class \code{purity})
+#' @param comp
+#' for which component(s) make the plot for
 #' @param ...
 #' other arguments
 #' 

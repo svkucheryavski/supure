@@ -26,6 +26,8 @@ plotConcentrations(obj, comp = 1:obj$ncomp, origspec = NULL,
 \item{ylab}{label for y axis}
 
 \item{main}{main title for the plot}
+
+\item{...}{other parameters for matplot function}
 }
 \description{
 Shows a plot with resolved concentration profiles
